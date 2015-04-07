@@ -9,4 +9,17 @@ import javax.swing.event.DocumentListener;
 
 class RpgUi {
 	
+	RpgUi(){
+		createJFrame();
+	}
+	
+	private void createJFrame(){
+		JFrame frame = new JFrame();
+		frame.getContentPane().setBackground(Color.black);
+		frame.setTitle("RpgUI");
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+	
 }
