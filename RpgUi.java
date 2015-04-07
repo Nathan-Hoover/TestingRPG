@@ -18,7 +18,7 @@ class RpgUi {
 		frame.getContentPane().setBackground(Color.black);
 		frame.setTitle("RpgUI");
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setMinimumSize(new Dimension(1280 , 720));		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	
