@@ -3,4 +3,8 @@ class Start {
 		RpgUi RPGWindow = new RpgUi();
 	}
 }
+<<<<<<< HEAD
 // your name or something
+=======
+//WES.LETCHER
+>>>>>>> origin/master
