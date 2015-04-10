@@ -1,16 +1,21 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 class RpgUi {
 	JFrame frame;
-	JPanel artPanel, controlPanel, infoPanel, promptPanel, choicePanel;
+	JPanel controlPanel, infoPanel, promptPanel, choicePanel;
 	JLabel choice1, choice2, choice3, choice4;
 	JTextArea promptText;
 	JScrollPane promptScroll;
 	GridBagConstraints controlPanelConstraints;
+	BackgroundPanel artPanel;
+	Image artPanelBackground;
 	
 	RpgUi(){
 		createJFrame();
@@ -36,8 +41,14 @@ class RpgUi {
 	}
 	
 	private void createArtPanel(){
-		artPanel = new JPanel();
-		artPanel.setBackground(Color.green);
+		try {
+			artPanelBackground = ImageIO.read(new File("/Users/Nathaniel/Documents/TestingRPG/Lava.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		artPanel = new BackgroundPanel(artPanelBackground, BackgroundPanel.SCALED, 0.0f, 0.0f);
+		artPanel.setPreferredSize(artPanel.getPreferredSize());
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
@@ -46,8 +57,8 @@ class RpgUi {
 		gbc.weightx = 1.0;
 		gbc.weighty = 1.0;
 		
+		artPanel.setPreferredSize(artPanel.getPreferredSize());
 		frame.add(artPanel, gbc);
-		
 	}
 	
 	private void createControlPanel(){
