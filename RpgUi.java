@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -41,8 +42,15 @@ class RpgUi {
 	}
 	
 	private void createArtPanel(){
+		ClassLoader loader = RpgUi.class.getClassLoader();
+        URL classLocation = loader.getResource("RpgUi.class");
+        System.out.println(classLocation);
+        String classLocationToString = classLocation.toString();
+        String location = classLocationToString.substring(0, classLocationToString.length() - 11) + "Lava.jpg";
+        System.out.println(location);
+        
 		try {
-			artPanelBackground = ImageIO.read(new File("/Users/Nathaniel/Documents/TestingRPG/Lava.jpg"));
+			artPanelBackground = ImageIO.read(new URL(location));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
