@@ -1,21 +1,18 @@
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 class RpgUi {
 	JFrame frame;
-	JPanel topPanel, bottomPanel, sidePanel1, sidePanel2;
-	JTextArea textPanel;
+	JPanel artPanel, controlPanel, infoPanel, promptPanel, choicePanel;
+	JLabel choice1, choice2, choice3, choice4;
+	JTextArea promptText;
+	JScrollPane promptScroll;
+	GridBagConstraints controlPanelConstraints;
 	
 	RpgUi(){
 		createJFrame();
 		createPanels();
-		createTextArea();
 	}
 	
 	private void createJFrame(){
@@ -30,71 +27,127 @@ class RpgUi {
 	}
 	
 	private void createPanels(){
-		topPanel = new JPanel();
-		topPanel.setBackground(Color.green);
-		
-		bottomPanel = new JPanel();
-		bottomPanel.setBackground(Color.yellow);
-		
-		sidePanel1 = new JPanel();
-		sidePanel1.setBackground(Color.red);
-		
-		sidePanel2 = new JPanel();
-		sidePanel2.setBackground(Color.red);
+		createArtPanel();
+		createControlPanel();
+		createInfoPanel();
+		frame.pack();
+	}
+	
+	private void createArtPanel(){
+		artPanel = new JPanel();
+		artPanel.setBackground(Color.green);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = GridBagConstraints.PAGE_START;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 1.0;
 		gbc.weighty = 1.0;
 		
-		frame.add(topPanel, gbc);
+		frame.add(artPanel, gbc);
 		
-		gbc.anchor = GridBagConstraints.WEST;
+	}
+	
+	private void createControlPanel(){
+		controlPanel = new JPanel(); 
+		controlPanel.setLayout(new GridBagLayout());
+		controlPanel.setBackground(Color.yellow);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.gridx = 0;
 		gbc.gridy = 1;
+		gbc.weightx = 1.0;
 		gbc.weighty = 0.65;
 		
-		frame.add(bottomPanel, gbc);
+		controlPanelConstraints = new GridBagConstraints();
+		createPromptPanel();
+		createChoicePanel();
 		
-		gbc.anchor = GridBagConstraints.PAGE_END;
+		frame.add(controlPanel, gbc);
+	}
+
+	private void createPromptPanel(){
+		promptPanel = new JPanel();
+		promptPanel.setBackground(Color.BLACK);
+		promptPanel.setPreferredSize(promptPanel.getPreferredSize());
+		
+		promptText = new JTextArea("Hello World please be bigger ........Hello World please be bigger ........Hello World please be bigger ........Hello World please be bigger ........");
+		promptText.setLineWrap(true);
+		
+		promptScroll = new JScrollPane(promptText);
+		promptScroll.setBackground(Color.RED);
+		promptScroll.setPreferredSize(new Dimension(500,100));
+		
+		GridBagConstraints promptPanelConstraints = new GridBagConstraints();
+		promptPanelConstraints.fill = GridBagConstraints.NONE;
+		promptPanelConstraints.gridx = 0;
+		promptPanelConstraints.gridy = 0;
+		promptPanelConstraints.weightx = 1.0;
+		promptPanelConstraints.weighty = 1.0;
+		
+		promptPanel.add(promptScroll, promptPanelConstraints);
+		
+		controlPanelConstraints.fill = GridBagConstraints.BOTH;
+		controlPanelConstraints.gridx = 0;
+		controlPanelConstraints.gridy = 0;
+		controlPanelConstraints.weightx = 1.0;
+		controlPanelConstraints.weighty = 0.65;
+
+		controlPanel.add(promptPanel, controlPanelConstraints);
+	}
+
+	private void createChoicePanel(){
+		choicePanel = new JPanel();
+		choicePanel.setLayout(new GridBagLayout());
+		choicePanel.setBackground(Color.ORANGE);
+		choicePanel.setPreferredSize(choicePanel.getPreferredSize());
+		
+		choice1 = new JLabel("Choice 1");
+		choice2 = new JLabel("Choice 2");
+		choice3 = new JLabel("Choice 3"); 
+		choice4 = new JLabel("Choice 4");
+		
+		GridBagConstraints choicePanelConstraints = new GridBagConstraints();
+		choicePanelConstraints.fill = GridBagConstraints.NONE;
+		choicePanelConstraints.gridx = 0;
+		choicePanelConstraints.gridy = 0;
+		choicePanelConstraints.weightx = 1.0;
+		choicePanelConstraints.weighty = 1.0;
+		
+		choicePanel.add(choice1, choicePanelConstraints);
+		
+		choicePanelConstraints.gridy = 1;
+		choicePanel.add(choice2, choicePanelConstraints);
+
+		choicePanelConstraints.gridy = 2;
+		choicePanel.add(choice3, choicePanelConstraints);
+
+		choicePanelConstraints.gridy = 3;
+		choicePanel.add(choice4, choicePanelConstraints);
+		
+		controlPanelConstraints.fill = GridBagConstraints.BOTH;
+		controlPanelConstraints.gridx = 0;
+		controlPanelConstraints.gridy = 1;
+		controlPanelConstraints.weightx = 1.0;
+		controlPanelConstraints.weighty = 0.65;
+		
+		controlPanel.add(choicePanel, controlPanelConstraints);
+	}
+	
+	private void createInfoPanel(){
+		infoPanel = new JPanel();
+		infoPanel.setBackground(Color.red);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		gbc.weightx = 0.3;
+		gbc.gridheight = 2;
+		gbc.weightx = 0.35;
+		gbc.weighty = 1.0;
 		
-		frame.add(sidePanel1, gbc);
-		
-		gbc.anchor = GridBagConstraints.PAGE_END;
-		gbc.gridy = 1;
-		frame.add(sidePanel2, gbc);
-		/*
-		GridBagConstraints gbc2 = new GridBagConstraints();
-		gbc2.anchor = GridBagConstraints.PAGE_END;
-		gbc2.fill = GridBagConstraints.BOTH;
-		gbc2.gridx = 0;
-		gbc2.gridy = 0;
-		gbc2.weightx = 1.0;
-		gbc2.weighty = 1.0;
-		
-		frame.add(sidePanel, gbc2);
-		*/
-		frame.pack();
+		frame.add(infoPanel, gbc);
 	}
-	
-	private void createTextArea(){
-		textPanel = new JTextArea(600, 800);
-		textPanel.insert("Test", 4);
 		
-		GridBagConstraints gbc3 = new GridBagConstraints();
-		gbc3.anchor = GridBagConstraints.PAGE_END;
-		gbc3.fill = GridBagConstraints.BOTH;
-		gbc3.gridx = 0;
-		gbc3.gridy = 1;
-		gbc3.weightx = 1.0;
-		gbc3.weighty = 1.0;
-		
-		frame.add(textPanel, gbc3);
-	}
-	
 }
