@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -74,6 +76,7 @@ class RpgUi {
 		
 		promptText = new JTextArea("Hello World please be bigger ........Hello World please be bigger ........Hello World please be bigger ........Hello World please be bigger ........");
 		promptText.setLineWrap(true);
+		promptText.setEditable(false);
 		
 		promptScroll = new JScrollPane(promptText);
 		promptScroll.setBackground(Color.RED);
@@ -107,6 +110,96 @@ class RpgUi {
 		choice2 = new JLabel("Choice 2");
 		choice3 = new JLabel("Choice 3"); 
 		choice4 = new JLabel("Choice 4");
+		
+		choice1.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {	
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {	
+			}
+        });
+		
+		choice2.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setChoices();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {	
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {	
+			}
+        });
+		
+		choice3.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setPrompt();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {	
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {	
+			}
+        });
+		
+		choice4.addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {	
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {	
+			}
+        });
 		
 		GridBagConstraints choicePanelConstraints = new GridBagConstraints();
 		choicePanelConstraints.fill = GridBagConstraints.NONE;
@@ -149,5 +242,15 @@ class RpgUi {
 		
 		frame.add(infoPanel, gbc);
 	}
-		
+	
+	public void setChoices(){
+		choice1.setText("Testing");
+		choice2.setText("Testing 1");
+		choice3.setText("Testing 2");
+		choice4.setText("Testing 3");
+	}
+	
+	public void setPrompt(){
+		promptText.setText("WABLE WUE");
+	}
 }
